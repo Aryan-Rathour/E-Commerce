@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student's List</title>
+    </head>
+    <body>
+        <div>
+            <a href="{% url 'student-form' %}">Add Student</a>
+            <table border=2px>
+                <thead>
+                    <tr>
+                        <th>Student's Id</th>
+                        <th>First_name</th>
+                        <th>Last_name</th>
+                        <th>Age</th>
+                        <th>Grade</th>
+                        <th>Update</th>
+                        <th>R'U Sure</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                        <tr>
+                            <td>{{ student.student_id }}</td>
+                            <td>{{ student.first_name }}</td>
+                            <td>{{ student.last_name }}</td>
+                            <td>{{ student.age }}</td>
+                            <td>{{ student.grade }}</td>
+                            <td><div>
+                                <form action="{% url 'Update-record' %}">
+                                    <button type="submit">Update</button>
+                                </form>
+                                </div>
+                            </td>
+                            <td><div>
+                                <form action="{% url 'delete-record' %}">
+                                    <button type="submit">Delete</button>
+                                </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
